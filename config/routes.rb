@@ -1,4 +1,25 @@
 ThreeTierWebsite::Application.routes.draw do
+  
+  resources :pages do
+    #resources :categories do
+    #  resources :items
+    #end
+  end
+  
+  
+  match "/:page_name" => "pages#show", :as => :show_page
+  match "/:page_name/:category_name" => "pages#show", :as => :show_category
+  match "/:page_name/:category_name/:item_name" => "pages#show", :as => :show_item
+  
+  root :to => "pages#show", :page_id => 1
+  
+  #get "pages/show"
+  #get "pages/new"
+  #get "pages/create"
+  #get "pages/edit"
+  #get "pages/update"
+  #get "pages/destroy"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

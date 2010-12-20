@@ -1,0 +1,334 @@
+.container {
+  width: 710px;
+}
+
+body {
+  background: #222;
+  color: white;
+}
+
+header {
+  padding-top: 20px;
+}
+
+header img {
+  padding: 1em;
+}
+
+section {
+  margin-top: 1em;
+  font-size: 120%;
+  padding: 20px;
+  background: #333;
+}
+
+section h1 {
+  font-size: 200%;
+  color: white;
+}
+
+/* Links */
+
+a {
+  color: #3cf;
+  text-decoration: none;
+}
+
+a:hover, a:active {
+  color: #39c;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #39c;
+}
+
+/* Navigation */
+
+nav {
+  float: right;
+}
+
+nav {
+  background: #333;
+  padding: 0px 15px;
+  white-space: nowrap;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  list-style-type: none;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li:hover, nav ul li.selected {
+  background: #222;
+}
+
+nav ul li a {
+  display: block;
+  padding: 2px 5px;
+  font-weight: bold;
+}
+
+/*
+nav ul li:first-child a {
+  padding-left: 15px;
+}
+
+nav ul li:last-child a {
+  padding-right: 15px;
+}
+*/
+
+nav ul li a:visited {
+  color: #3cf;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Sign up button */
+
+a.signup_button {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-align: center;
+  width: 190px;
+  color: #fff;
+  background: #006400;
+  font-size: 150%;
+  font-weight: bold;
+  padding: 20px;
+}
+
+/* Round corners */
+
+.round {
+  -moz-border-radius:    10px;
+  -webkit-border-radius: 10px;
+  border-radius:         10px;
+  border: 1px solid #444;
+}
+
+.round-left {
+  -moz-border-radius-topleft:     8px;
+  -webkit-border-top-left-radius: 8px;
+  border-top-left-radius:         8px;
+  -moz-border-radius-bottomleft:     8px;
+  -webkit-border-bottom-left-radius: 8px;
+  border-bottom-left-radius:         8px;
+}
+
+.round-right {
+  -moz-border-radius-topright:     8px;
+  -webkit-border-top-right-radius: 8px;
+  border-top-right-radius:         8px;
+  -moz-border-radius-bottomright:     8px;
+  -webkit-border-bottom-right-radius: 8px;
+  border-bottom-right-radius:         8px;
+}
+
+/* Footer */
+
+footer {
+  text-align: center;
+  margin-top: 10px;
+  width: 710px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 80%;
+}
+
+
+footer, footer nav {
+  float: none;
+}
+
+footer nav span {
+}
+
+footer a.webmaster {
+  color: #ccc;
+}
+
+/* user show page */
+
+table.profile {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+td.main {
+  width: 70%;
+  padding: 1em;
+}
+
+td.sidebar {
+  width: 30%;
+  padding: 1em;
+  vertical-align: top;
+  background: #222;
+}
+
+.profile img.gravatar {
+  border: 1px solid #999;
+  margin-bottom: -15px;
+}
+
+/* user new page */
+
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+
+/* user index */
+
+ul.users {
+  margin-top: 1em;
+}
+
+.users li {
+  list-style: none;
+}
+
+/* errors */
+
+.field_with_errors {
+  margin-top: 10px;
+  padding: 2px;
+  background-color: #8a1f11;
+  display: table;
+}
+
+/*.field_with_errors label {
+  color: #fff;
+}*/
+
+#error_explanation {
+  padding:0.8em;
+  margin-bottom:1em;
+  border:2px solid #fbc2c4;
+  background:#fbe3e4;
+  color:#8a1f11;
+}
+
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -12px -12px 0px -11px;
+  background-color: #8a1f11;
+  color: #fbe3e4;
+}
+
+#error_explanation p {
+  /* color: #333; */
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+/* microposts */
+
+h1.micropost {
+  margin-bottom: 0.3em;
+}
+
+table.microposts {
+  margin-top: 1em;
+}
+
+table.microposts tr {
+  height: 70px;
+}
+
+.microposts tbody tr:nth-child(2n) td.delete,
+.microposts tbody tr.even td.delete {
+  background-color: #333;
+}
+
+table.microposts tr td.gravatar,
+table.microposts tr td.micropost {
+  /*border-top: 1px solid #ccc;*/
+  vertical-align: top;
+  padding-top: 10px;
+  /*background-color: #222;*/
+}
+
+.microposts tbody tr:nth-child(2n) td.gravatar,
+.microposts tbody tr.even td.gravatar,
+.microposts tbody tr:nth-child(2n) td.micropost,
+.microposts tbody tr.even td.micropost {
+  background-color: #222;
+}
+
+/*
+.microposts tbody tr:nth-child(2n+1) td.gravatar,
+.microposts tbody tr.odd td.gravatar,
+.microposts tbody tr:nth-child(2n+1) td.micropost,
+.microposts tbody tr.odd td.micropost {
+  background: none repeat scroll 0 0 #555;
+}
+
+.microposts tbody tr:first-child td {
+  border-top: none;
+}
+*/
+
+table.microposts tr td.micropost span.timestamp {
+  display: block;
+  font-size: 85%;
+  color: #ccc;
+}
+
+div.user_info img {
+  padding-right: 0.1em;
+}
+
+div.user_info a {
+  text-decoration: none;
+}
+
+div.user_info span.user_name {
+  position: absolute;
+}
+
+div.user_info span.microposts {
+  font-size: 80%;
+}
+
+form.new_micropost {
+  margin-bottom: 2em;
+}
+
+form.new_micropost textarea {
+  height: 4em;
+  margin-bottom: 0;
+}
+
+form.new_micropost div.counter, form.new_micropost div.actions {
+  display: inline;
+  float: left;
+  color: #ccc;
+  font-size: 80%;
+  padding-left: 10px;
+}
+
+.ajax_submit {
+  display: none;
+}
+

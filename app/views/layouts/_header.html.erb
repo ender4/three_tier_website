@@ -1,0 +1,15 @@
+<header>
+  <%= link_to logo, root_path %>
+  <nav class="round">
+    <ul>
+      <% Page.all(:order => "page_order").each do |page| %>
+        <% if page == @page %>
+          <li class="selected"><%= link_to page.name, show_page_path(page.name_url), :class => "selected" %></li>
+        <% else %>
+          <li class="not-selected"><%= link_to page.name, show_page_path(page.name_url), :class => "not-selected" %></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </nav>
+</header>
+
