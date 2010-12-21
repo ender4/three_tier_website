@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101215191507) do
+ActiveRecord::Schema.define(:version => 20101221030626) do
 
   create_table "pages", :force => true do |t|
     t.string   "name"
@@ -26,5 +26,14 @@ ActiveRecord::Schema.define(:version => 20101215191507) do
   add_index "pages", ["name"], :name => "index_pages_on_name", :unique => true
   add_index "pages", ["name_url"], :name => "index_pages_on_name_url", :unique => true
   add_index "pages", ["page_order"], :name => "index_pages_on_page_order"
+
+  create_table "users", :force => true do |t|
+    t.string   "name"
+    t.string   "permissions"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["name"], :name => "index_users_on_name", :unique => true
 
 end

@@ -19,8 +19,9 @@ class Page < ActiveRecord::Base
       record.errors[ attribute ] << ( options[ :message ] ||
           "must contain at least 1 letter, digit, underscore or dash" ) if
           Page.strip_string(value).empty?
+      in_use = Page.name_in_use?(value)
       record.errors[ attribute ] << ( options[ :message ] ||
-          "in use" ) unless Page.name_in_use?(value) == record
+          "in use" ) if in_use and in_use != record
       record.errors[ attribute ] << ( options[ :message ] ||
           "reserved keyword" ) if value =~ /\Anew|edit\z/i
     end

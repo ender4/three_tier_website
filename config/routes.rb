@@ -1,5 +1,7 @@
 ThreeTierWebsite::Application.routes.draw do
   
+  get "users/new"
+
   resources :pages do
     #resources :categories do
     #  resources :items

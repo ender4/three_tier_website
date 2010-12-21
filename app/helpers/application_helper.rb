@@ -33,4 +33,40 @@ module ApplicationHelper
     Page.first(:order => "updated_at DESC").updated_at
   end
   
+  def get_page
+    if @page
+      @page
+    elsif params[:page_name]
+      Page.find_by_name_url(params[:page_name])
+    elsif params[:page_id]
+      Page.find(params[:page_id])
+    else
+      home
+    end
+  end
+  
+  def get_category
+    if @category
+      @category
+    elsif params[:category_name]
+      Category.find_by_name_url(params[:category_name])
+    elsif params[:category_id]
+      Category.find(params[:category_id])
+    else
+      nil
+    end
+  end
+
+  def get_item
+    if @item
+      @item
+    elsif params[:item_name]
+      Item.find_by_name_url(params[:item_name])
+    elsif params[:item_id]
+      Item.find(params[:item_id])
+    else
+      nil
+    end
+  end
+
 end
