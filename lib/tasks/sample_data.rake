@@ -14,5 +14,9 @@ namespace :db do
                    :image => "rails.png",
                    :description => "a description for #{name}")
     end
+    User.create!(:name => "superadmin",
+                 :permissions => "get,put,post,delete",
+                 :password => "buzzinga",
+                 :password_confirmation => "buzzinga")
   end
 end

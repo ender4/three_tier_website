@@ -1,5 +1,5 @@
 module ApplicationHelper
-
+    
   def logo
     image_tag("logo.png", :alt => "Sample App", :class => "round")
   end
@@ -9,24 +9,36 @@ module ApplicationHelper
   end
   
   def title  
-    str = "#{home.title} | #{@page.name}"
-    str = @page.title unless @page.title.blank?
-    if @category
-      if @category.title.blank?
-        str = "#{str} | #{@category.name}"
-      else
-        str = @category.title
+    str = "#{home.title}"
+    if @page
+      if @page.title.blank?
+        str = "#{str} | #{@page.name}"
+      elsif @page != home
+        str = @page.title
       end
-      if @item
-        if @item.title.blank?
-          str = "#{str} | #{@item.name}"
+      if @category
+        if @category.title.blank?
+          str = "#{str} | #{@category.name}"
         else
-          str = @item.title
+          str = @category.title
+        end
+        if @item
+          if @item.title.blank?
+            str = "#{str} | #{@item.name}"
+          else
+            str = @item.title
+          end
         end
       end
+    elsif @user
+      str = "#{str} | #{@user.name}"
     end
-    str = "#{str} | #{@title_suffix}" if @title_suffix
-    str
+    
+    if @title_suffix
+      "#{str} | #{@title_suffix}" 
+    else
+      str
+    end
   end
   
   def last_edited_on
@@ -68,5 +80,5 @@ module ApplicationHelper
       nil
     end
   end
-
+  
 end

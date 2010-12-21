@@ -1,20 +1,20 @@
 ThreeTierWebsite::Application.routes.draw do
   
-  get "users/new"
-
+  resources :users
   resources :pages do
     #resources :categories do
     #  resources :items
     #end
   end
   
-  
+  #match "/users/:id" => "users#show", :as => :show_user
   match "/:page_name" => "pages#show", :as => :show_page
   match "/:page_name/:category_name" => "pages#show", :as => :show_category
   match "/:page_name/:category_name/:item_name" => "pages#show", :as => :show_item
   
   root :to => "pages#show", :page_id => 1
   
+  #get "users/show"
   #get "pages/show"
   #get "pages/new"
   #get "pages/create"

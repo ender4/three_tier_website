@@ -1,0 +1,9 @@
+<h1>
+  <%= @user.name %>
+</h1>
+Permissions:
+<ul>
+  <% @user.permissions.split(",").each do |permission| %>
+    <li><%= permission %></li>
+  <% end %>
+</ul>

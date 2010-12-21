@@ -12,7 +12,9 @@
 #
 
 class Page < ActiveRecord::Base
+  require 'model_helper'
   include ActiveModel::Validations
+  include ModelHelper
 
   class NameValidator < ActiveModel::EachValidator
     def validate_each( record, attribute, value )
@@ -23,7 +25,7 @@ class Page < ActiveRecord::Base
       record.errors[ attribute ] << ( options[ :message ] ||
           "in use" ) if in_use and in_use != record
       record.errors[ attribute ] << ( options[ :message ] ||
-          "reserved keyword" ) if value =~ /\Anew|edit\z/i
+          "reserved keyword" ) if value =~ Page.keyword_regexp
     end
   end
 
@@ -45,13 +47,10 @@ class Page < ActiveRecord::Base
   end
     
   def self.name_in_use?(name)
-    find_by_name_url(strip_string(name))
+    find_by_name_url(self.strip_string(name))
   end
   
-  def self.strip_string(string)
-    string.downcase.split(/[^a-z0-9_\-]+/).join
-  end
-    
+  
   private
   
     def generate_name_url
@@ -60,7 +59,7 @@ class Page < ActiveRecord::Base
     
     def generate_page_order
       page = Page.last(:order => "page_order")
-      order = page ? page.page_order : nil
-      self.page_order = order ? order + 1 : 1
+      order = page ? page.page_order : 0
+      self.page_order = order + 1
     end
 end

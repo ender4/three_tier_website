@@ -1,12 +1,68 @@
+require 'digest'
+require 'model_helper'
+
 class User < ActiveRecord::Base
-  attr_accessible :name, :permissions
+  include ModelHelper
   
-  perms = "get|put|post|delete"
-  permissions_regexp = /\A(#{perms})(,(#{perms}))*\z/i
+  attr_accessor :password
+  #attr_accessible :name, :permissions, :password, :password_confirmation
   
   validates :name, :presence => true,
-                   :length => { :maximum => 64, :minimum => 4 },
+                   :length => { :within => 4..64 },
                    :uniqueness => { :case_sensitive => false }
   validates :permissions, :presence => true,
-                          :format => { :with => permissions_regexp }
+                          :format => { :with => User.permissions_regexp }
+  validates :password, :presence => true,
+                       :confirmation => true,
+                       :length => { :within => 6..64 }
+  
+  before_save :encrypt_password
+  
+  def has_password?(submitted_password)
+    encrypted_password == encrypt(submitted_password)
+  end
+  
+  def may_get?
+    permissions =~ /get/i
+  end
+  
+  def may_put?
+    permissions =~ /put/i
+  end
+  
+  def may_post?
+    permissions =~ /post/i
+  end
+  
+  def may_delete?
+    permissions =~ /delete/i
+  end
+  
+  def self.authenticate(name, submitted_password)
+    user = find_by_name(name)
+    if user.nil? or not(user.has_password?(submitted_password))
+      nil
+    else
+      user
+    end
+  end
+  
+  private
+  
+    def encrypt_password
+      self.salt = make_salt if new_record?
+      self.encrypted_password = encrypt(password)
+    end
+    
+    def encrypt(string)
+      secure_hash("#{salt}--#{string}")
+    end
+    
+    def make_salt
+      secure_hash("#{Time.now.utc}--#{password}")
+    end
+    
+    def secure_hash(string)
+      Digest::SHA2.hexdigest(string)
+    end
 end
