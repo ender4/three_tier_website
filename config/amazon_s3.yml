@@ -1,0 +1,16 @@
+development:
+  bucket: threegirlsbakery.com.development
+  access_key_id: AKIAJ2YCRFTIQXZW6KBA
+  secret_access_key: 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
+
+
+test:
+  bucket: threegirlsbakery.com.test
+  access_key_id: AKIAJ2YCRFTIQXZW6KBA
+  secret_access_key: 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
+
+
+production:
+  bucket: threegirlsbakery.com
+  access_key_id: AKIAJ2YCRFTIQXZW6KBA
+  secret_access_key: 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
