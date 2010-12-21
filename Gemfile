@@ -8,6 +8,7 @@ gem 'sqlite3-ruby', '1.3.1', :group => :development
 gem 'will_paginate', '3.0.pre2'
 gem 'jquery-rails'
 gem 'paperclip'
+gem 'aws-s3'
 
 group :development do
   gem 'rspec-rails', '2.1.0'
