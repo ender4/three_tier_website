@@ -10,7 +10,9 @@ module ApplicationHelper
   
   def title  
     str = "#{home.title}"
-    if @page
+    if @title
+      str = "#{str} | #{@title}"
+    elsif @page
       if @page.title.blank?
         str = "#{str} | #{@page.name}"
       elsif @page != home
@@ -30,8 +32,6 @@ module ApplicationHelper
           end
         end
       end
-    elsif @user
-      str = "#{str} | #{@user.name}"
     end
     
     if @title_suffix
