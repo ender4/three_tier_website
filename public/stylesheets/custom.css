@@ -153,7 +153,8 @@ footer, footer nav {
   float: none;
 }
 
-footer nav span {
+footer nav a {
+  padding-left: 10px;
 }
 
 footer a.webmaster {

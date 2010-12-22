@@ -10,7 +10,7 @@ module ModelHelper
     end
   
     def reserved_keywords
-      %w[new edit delete users]
+      %w[new edit delete users signin signout sessions]
     end
     
     def keyword_regexp
