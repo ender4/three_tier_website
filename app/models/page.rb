@@ -1,20 +1,21 @@
 # == Schema Information
-# Schema version: 20101210003903
+# Schema version: 20101224212728
 #
 # Table name: pages
 #
 #  id          :integer         not null, primary key
 #  name        :string(255)
-#  image       :string(255)
 #  description :text
 #  created_at  :datetime
 #  updated_at  :datetime
+#  title       :string(255)
+#  name_url    :string(255)
+#  page_order  :integer
 #
 
 class Page < ActiveRecord::Base
-  require 'model_helper'
   include ActiveModel::Validations
-  include ModelHelper
+  include ClassMethodsHelper
 
   class NameValidator < ActiveModel::EachValidator
     def validate_each( record, attribute, value )
@@ -29,13 +30,14 @@ class Page < ActiveRecord::Base
     end
   end
 
-  attr_accessible :name, :image, :description, :title
+  attr_accessible :name, :description, :title#, :image
   
   validates :name, :presence => true, :name => true
-  validates :image, :presence => true
+  #validates :image, :presence => true
   validates :description, :presence => true
   
   before_save :generate_name_url
+  before_save :trim_title
   before_create :generate_page_order
   
   def swap_order!(other)
@@ -61,5 +63,9 @@ class Page < ActiveRecord::Base
       page = Page.last(:order => "page_order")
       order = page ? page.page_order : 0
       self.page_order = order + 1
+    end
+    
+    def trim_title
+      title = nil if title.blank?
     end
 end

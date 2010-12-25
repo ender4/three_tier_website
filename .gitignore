@@ -9,3 +9,4 @@ doc/app
 *.swp
 *~
 .DS_Store
+config/amazon_s3.yml

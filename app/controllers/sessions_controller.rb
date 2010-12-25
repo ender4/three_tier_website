@@ -1,7 +1,12 @@
 class SessionsController < ApplicationController
   
   def new
-    @title = "Sign in"
+    if signed_in?
+      redirect_to root_path,
+          :notice => "You must sign out before signing in as a different user."
+    else
+      @title = "Sign in"
+    end
   end
   
   def create
@@ -13,7 +18,7 @@ class SessionsController < ApplicationController
       render 'new'
     else
       signin user
-      redirect_to user
+      redirect_back_or user
     end
   end
   

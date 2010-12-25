@@ -3,6 +3,14 @@ module ApplicationHelper
   def logo
     image_tag("logo.png", :alt => "Sample App", :class => "round")
   end
+  
+  def page_link_li(page)
+    page_path = (page == home) ? root_path : show_page_path(page.name_url)
+    html_class = (page == @page) ? "selected" : "not-selected"
+    "<li class='#{html_class}'>
+       #{link_to page.name, page_path, :class => html_class}
+     </li>"
+  end
 
   def home
     Page.find(1)
@@ -45,6 +53,10 @@ module ApplicationHelper
     Page.first(:order => "updated_at DESC").updated_at
   end
   
+  def new_page?
+    @page.nil? or @page.id.nil?
+  end
+  
   def get_page
     if @page
       @page
@@ -52,6 +64,8 @@ module ApplicationHelper
       Page.find_by_name_url(params[:page_name])
     elsif params[:page_id]
       Page.find(params[:page_id])
+    elsif params[:id]
+      Page.find(params[:id])
     else
       home
     end
@@ -80,5 +94,40 @@ module ApplicationHelper
       nil
     end
   end
+
+  def get_photo
+    if @photo
+      @photo
+    elsif params[:photo_name]
+      Photo.find_by_name_url(params[:photo_name])
+    elsif params[:photo_id]
+      Photo.find(params[:photo_id])
+    elsif params[:id]
+      Photo.find(params[:id])
+    else
+      nil
+    end
+  end
+
+  def strip_string(string)
+    string.downcase.split(/[^a-z0-9_\-]+/).join
+  end
+
+  def reserved_keywords
+    %w[new edit delete users signin signout sessions photos pages
+        categories items]
+  end
   
+  def keyword_regexp
+    /\A(#{reserved_keywords.join("|")})\z/i
+  end
+  
+  def all_permissions
+    %w[get put post delete]
+  end
+  
+  def permissions_regexp
+    perms = all_permissions.join("|")
+    /\A(#{perms})(,(#{perms}))*\z/i
+  end  
 end

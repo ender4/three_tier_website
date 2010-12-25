@@ -1,30 +1,38 @@
 ThreeTierWebsite::Application.routes.draw do
   
-  resources :pages do
+  resources :pages #do
     #resources :categories do
     #  resources :items
     #end
-  end
+  #end
   resources :users, :only => [:show]
   resources :sessions, :only => [:new, :create, :destroy]
+  resources :photos#, :only => [:show, :index]
   
   #match "/users/:id" => "users#show", :as => :show_user
   match '/signin', :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
+  match '/photos/:photo_name', :to => 'photos#show', :as => :show_photo
   match "/:page_name" => "pages#show", :as => :show_page
   match "/:page_name/:category_name" => "pages#show", :as => :show_category
-  match "/:page_name/:category_name/:item_name" => "pages#show", :as => :show_item
+  match "/:page_name/:category_name/:item_name" => "pages#show",
+      :as => :show_item
   
   root :to => "pages#show", :page_id => 1
   
-  #get "sessions/new"
-  #get "users/show"
-  #get "pages/show"
-  #get "pages/new"
-  #get "pages/create"
-  #get "pages/edit"
-  #get "pages/update"
-  #get "pages/destroy"
+  # get "photos/new"
+  # get "photos/edit"
+  # get "photos/create"
+  # get "photos/update"
+  # get "photos/destroy"
+  # get "sessions/new"
+  # get "users/show"
+  # get "pages/show"
+  # get "pages/new"
+  # get "pages/create"
+  # get "pages/edit"
+  # get "pages/update"
+  # get "pages/destroy"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

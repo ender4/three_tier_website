@@ -4,7 +4,7 @@ describe SessionsController do
   render_views
   
   before(:each) do
-    @page = Factory(:page)
+    @home = Factory(:page)
   end
     
   describe "GET 'new'" do
@@ -17,6 +17,23 @@ describe SessionsController do
     it "should have the right title" do
       get :new
       response.should have_selector("title", :content => "Sign in")
+    end
+    
+    describe "for all ready signed-in users" do
+      
+      before(:each) do
+        @user = test_signin(Factory(:user))
+      end
+      
+      it "should redirect to the home page" do
+        get :new
+        response.should redirect_to(root_path)
+      end
+      
+      it "should show a flash notice" do
+        get :new
+        flash[:notice].should =~ /must sign out/i
+      end
     end
   end
   

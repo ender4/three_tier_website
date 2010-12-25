@@ -9,10 +9,11 @@ namespace :db do
                  :image => "rails.png",
                  :description => "this is the home page",
                  :title => "My Media Website")
+    names = Faker::Lorem.words(19)
     names.each do |name|
-      Page.create!(:name => name,
+      Page.create(:name => name,
                    :image => "rails.png",
-                   :description => "a description for #{name}")
+                   :description => Faker::Lorem.sentence(20))
     end
     User.create!(:name => "superadmin",
                  :permissions => "get,put,post,delete",

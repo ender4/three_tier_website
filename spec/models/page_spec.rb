@@ -4,7 +4,7 @@ describe Page do
   
   before(:each) do
     @attr = { :name => "a page",
-              :image => "public/images/rails.png", 
+              #:image => "public/images/rails.png", 
               :description => "a sample description",
               :title => "a title" }
   end
@@ -22,9 +22,9 @@ describe Page do
     Page.new(@attr).should_not be_valid
   end
   
-  it "should require an image" do
-    Page.new(@attr.merge(:image => "")).should_not be_valid
-  end
+  # it "should require an image" do
+    # Page.new(@attr.merge(:image => "")).should_not be_valid
+  # end
   
   it "should require a description" do
     Page.new(@attr.merge(:description => "")).should_not be_valid

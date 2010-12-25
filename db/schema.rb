@@ -10,11 +10,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101221201721) do
+ActiveRecord::Schema.define(:version => 20101224212728) do
 
   create_table "pages", :force => true do |t|
     t.string   "name"
-    t.string   "image"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -26,6 +25,16 @@ ActiveRecord::Schema.define(:version => 20101221201721) do
   add_index "pages", ["name"], :name => "index_pages_on_name", :unique => true
   add_index "pages", ["name_url"], :name => "index_pages_on_name_url", :unique => true
   add_index "pages", ["page_order"], :name => "index_pages_on_page_order"
+
+  create_table "photos", :force => true do |t|
+    t.string   "name"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name"

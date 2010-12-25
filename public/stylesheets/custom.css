@@ -8,15 +8,20 @@ body {
 }
 
 header {
-  padding-top: 20px;
+  padding-top: 10px;
 }
 
 header img {
   padding: 1em;
+  margin-right: 10px;
+  margin-bottom: 6px;
+}
+
+header td > a {
+  float: left;
 }
 
 section {
-  margin-top: 1em;
   font-size: 120%;
   padding: 20px;
   background: #333;
@@ -45,33 +50,40 @@ a:visited {
 
 /* Navigation */
 
-nav {
-  float: right;
-}
-
-nav {
-  background: #333;
-  padding: 0px 15px;
-  white-space: nowrap;
-}
-
-nav ul {
+header table, header tr, header td {
   margin: 0;
   padding: 0;
 }
 
-nav ul li {
+header table td {
+  vertical-align: top;
+}
+
+nav, header div {
+  float: right;
+  background: #333;
+  padding: 0px 15px;
+  margin-bottom: 10px;
+}
+
+
+nav ul, header div ul {
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li, header div ul li {
   list-style-type: none;
   display: inline-block;
   padding: 0;
   margin: 0;
 }
 
-nav ul li:hover, nav ul li.selected {
+nav ul li:hover, header div ul li:hover, nav ul li.selected {
   background: #222;
 }
 
-nav ul li a {
+nav ul li a, header div ul li a {
   display: block;
   padding: 2px 5px;
   font-weight: bold;
@@ -206,7 +218,9 @@ ul.users {
 .field_with_errors {
   margin-top: 10px;
   padding: 2px;
-  background-color: #8a1f11;
+  border: 1px solid #8a1f11;
+  background-color: #fbe3e4;
+  color: #8a1f11;
   display: table;
 }
 
@@ -226,10 +240,10 @@ ul.users {
   text-align: left;
   font-weight: bold;
   padding: 5px 5px 5px 15px;
-  font-size: 12px;
+  font-size: 16px;
   margin: -12px -12px 0px -11px;
-  background-color: #8a1f11;
-  color: #fbe3e4;
+  /*background-color: #8a1f11;*/
+  color: #8a1f11;
 }
 
 #error_explanation p {
@@ -332,4 +346,3 @@ form.new_micropost div.counter, form.new_micropost div.actions {
 .ajax_submit {
   display: none;
 }
-

@@ -1,8 +1,22 @@
+# == Schema Information
+# Schema version: 20101224212728
+#
+# Table name: users
+#
+#  id                 :integer         not null, primary key
+#  name               :string(255)
+#  permissions        :string(255)
+#  created_at         :datetime
+#  updated_at         :datetime
+#  encrypted_password :string(255)
+#  salt               :string(255)
+#
+
 require 'digest'
-require 'model_helper'
+#require 'model_helper'
 
 class User < ActiveRecord::Base
-  include ModelHelper
+  include ClassMethodsHelper
   
   attr_accessor :password
   #attr_accessible :name, :permissions, :password, :password_confirmation

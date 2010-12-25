@@ -1,15 +1,37 @@
 <header>
-  <%= link_to logo, root_path %>
-  <nav class="round">
-    <ul>
-      <% Page.all(:order => "page_order").each do |page| %>
-        <% if page == @page %>
-          <li class="selected"><%= link_to page.name, show_page_path(page.name_url), :class => "selected" %></li>
-        <% else %>
-          <li class="not-selected"><%= link_to page.name, show_page_path(page.name_url), :class => "not-selected" %></li>
+  <table>
+    <tr>
+      <td><%= link_to logo, root_path %></td>
+      <td>
+        <nav class="round">
+          <ul>
+            <% Page.all(:order => "page_order").each do |page| %>
+              <%= raw page_link_li(page) %>
+            <% end %>
+            <li><%= link_to "Photo gallery", photos_path %></li>
+          </ul>
+        </nav>
+        <% if signed_in? and not new_page? %>
+          <br />
+          <nav class="round">
+            <ul>
+              <li>Page: </li>
+              <% if current_user.may_post? %>
+                <li><%= link_to "new", new_page_path %></li>
+              <% end %>
+              <% if current_user.may_put? %>
+                <li><%= link_to "edit", edit_page_path(@page) %></li>
+              <% end %>
+              <% if current_user.may_delete? and not protected_page?(@page) %>
+                <li><%= link_to "delete", @page,
+                      :method => "delete",
+                      :confirm => "Are you sure?",
+                      :title => "Delete #{@page.name}" %></li>
+              <% end %>
+            </ul>
+          </nav>
         <% end %>
-      <% end %>
-    </ul>
-  </nav>
+      </td>
+    </tr>
+  </table>
 </header>
-

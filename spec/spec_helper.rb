@@ -1,4 +1,5 @@
 require 'rubygems'
+require 'paperclip/matchers'
 
 #=begin
 # This file is copied to spec/ when you run 'rails generate rspec:install'
@@ -31,6 +32,8 @@ RSpec.configure do |config|
   def test_signin(user)
     controller.signin(user)
   end
+  
+  config.include Paperclip::Shoulda::Matchers
 end
 #=end
 

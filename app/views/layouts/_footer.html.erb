@@ -1,9 +1,10 @@
 <footer>
   <nav class="round">
-    <span>&copy; Aron Ritchie 2010, last edited on <%= last_edited_on %></span>
+    <span>Aron Ritchie 2010, last edited on <%= last_edited_on %></span>
     <% if signed_in? %>
       <%= link_to "Profile", current_user, :class => "webmaster" %>
-      <%= link_to "Sign out", signout_path, :class => "webmaster" %>      
+      <%= link_to "Sign out", signout_path, :method => :delete,
+                                            :class => "webmaster" %>      
     <% else %>
       <%= link_to "Webmaster", signin_path, :class => "webmaster" %>
     <% end %>
