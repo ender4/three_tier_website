@@ -9,6 +9,7 @@ gem 'will_paginate', '3.0.pre2'
 gem 'jquery-rails'
 gem 'paperclip'
 gem 'aws-s3'
+gem 'nokogiri', '1.4.4.1'
 gem 'sanitize'
 
 group :development do
@@ -21,10 +22,6 @@ group :test do
   gem 'rspec', '2.1.0'
   gem 'webrat', '0.7.1'
   gem 'factory_girl_rails', '1.0'
-end
-
-group :production do
-  gem 'nokogiri', '1.4.4.1'
 end
 
 # Use unicorn as the web server
