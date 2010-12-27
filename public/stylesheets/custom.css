@@ -34,32 +34,66 @@ section h1 {
 
 /* Links */
 
-a {
-  color: #3cf;
+a, a:link, a:visited {
   text-decoration: none;
+  color: #ccc;
 }
 
-a:hover, a:active {
-  color: #39c;
+a:hover {
+  color: #fc0;
+}
+
+a:hover, a:focus {
   text-decoration: underline;
 }
 
-a:visited {
-  color: #39c;
+span.even {
+  color: #fc0;
 }
+
+span.odd {
+  color: #ccc;
+}
+
+span.even.alt {
+  color: #f90;
+}
+
+a:focus span.even, a:focus, a:hover span.even, a.selected span.even,
+section a, section a:link, section a:visited {
+  color: #0cf;
+}
+
+header nav > span, header nav > ul, .field input, .field div {
+  display: inline;
+}
+
+
+
+.name_ajax {
+  display: none;
+}
+
+/*span.odd.alt {
+
+}*/
 
 /* Navigation */
 
-header table, header tr, header td {
+header table, header tr, header td, .fields table, .fields tr, .fields td {
   margin: 0;
   padding: 0;
+}
+
+.fields td > * {
+  float: left;
 }
 
 header table td {
   vertical-align: top;
 }
 
-nav, header div {
+nav {
   float: right;
   background: #333;
   padding: 0px 15px;
@@ -67,26 +101,37 @@ nav, header div {
 }
 
 
-nav ul, header div ul {
+nav ul {
   margin: 0;
   padding: 0;
 }
 
-nav ul li, header div ul li {
+nav ul li {
   list-style-type: none;
   display: inline-block;
   padding: 0;
+  margin: 1px;
+}
+
+nav ul li:hover, nav ul li.selected {
+  background: #222;
+  -moz-border-radius:    4px;
+  -webkit-border-radius: 4px;
+  border-radius:         4px;
+  border: 1px solid #444;
   margin: 0;
 }
 
-nav ul li:hover, header div ul li:hover, nav ul li.selected {
-  background: #222;
-}
-
-nav ul li a, header div ul li a {
+nav ul li a {
   display: block;
   padding: 2px 5px;
   font-weight: bold;
+  text-decoration: none;
+  color: #ccc;
+}
+
+nav li a, nav li a:hover {
+  text-decoration: none;
 }
 
 /*
@@ -98,36 +143,20 @@ nav ul li:last-child a {
   padding-right: 15px;
 }
 */
-
+/*
 nav ul li a:visited {
-  color: #3cf;
+  color: #ccc;
 }
 
 nav ul li a:hover {
   text-decoration: underline;
 }
+*/
 
-/* Sign up button */
-
-a.signup_button {
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  text-align: center;
-  width: 190px;
-  color: #fff;
-  background: #006400;
-  font-size: 150%;
-  font-weight: bold;
-  padding: 20px;
-}
 
 /* Round corners */
 
 .round {
-  -moz-border-radius:    10px;
-  -webkit-border-radius: 10px;
-  border-radius:         10px;
   border: 1px solid #444;
 }
 
@@ -149,6 +178,24 @@ a.signup_button {
   border-bottom-right-radius:         8px;
 }
 
+/* preview */
+
+.preview.field {
+  padding: 10px;
+}
+
+/* flash */
+
+.flash, .round, .field_with_errors {
+  -moz-border-radius:    10px;
+  -webkit-border-radius: 10px;
+  border-radius:         10px;
+}
+/*
+.flash h3 {
+  color: inherit;
+}*/
+
 /* Footer */
 
 footer {
@@ -167,10 +214,6 @@ footer, footer nav {
 
 footer nav a {
   padding-left: 10px;
-}
-
-footer a.webmaster {
-  color: #ccc;
 }
 
 /* user show page */
@@ -192,6 +235,10 @@ td.sidebar {
   background: #222;
 }
 
+td.sidebar h3 {
+  color: inherit;
+}
+
 .profile img.gravatar {
   border: 1px solid #999;
   margin-bottom: -15px;
@@ -209,7 +256,7 @@ ul.users {
   margin-top: 1em;
 }
 
-.users li {
+.pages li, .categories li, .items li, .photos li, .tags li {
   list-style: none;
 }
 
@@ -217,8 +264,8 @@ ul.users {
 
 .field_with_errors {
   margin-top: 10px;
-  padding: 2px;
-  border: 1px solid #8a1f11;
+  padding: 2px 10px;
+  border: 1px solid #fbc2c4;
   background-color: #fbe3e4;
   color: #8a1f11;
   display: table;
@@ -230,31 +277,36 @@ ul.users {
 
 #error_explanation {
   padding:0.8em;
-  margin-bottom:1em;
+  /*margin-bottom:1em;
   border:2px solid #fbc2c4;
   background:#fbe3e4;
-  color:#8a1f11;
+  color:#8a1f11;*/
 }
 
 #error_explanation h2 {
   text-align: left;
   font-weight: bold;
-  padding: 5px 5px 5px 15px;
+  padding: 0px 5px 5px 15px;
   font-size: 16px;
-  margin: -12px -12px 0px -11px;
+  margin: 0px -12px 0px -11px;
   /*background-color: #8a1f11;*/
-  color: #8a1f11;
+  color: inherit;
 }
-
+/*
 #error_explanation p {
-  /* color: #333; */
+  /* color: #333; *
   margin-bottom: 0;
   padding: 5px;
 }
-
+*/
 #error_explanation ul li {
   font-size: 12px;
   list-style: square;
+}
+
+#error_explanation ul {
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 
 /* microposts */

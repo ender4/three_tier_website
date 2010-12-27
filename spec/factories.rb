@@ -16,3 +16,7 @@ Factory.define :photo do |photo|
   photo.name "rails.png"
   photo.image File.new("public/images/rails.png")
 end
+
+Factory.define :tag do |tag|
+  tag.name "example tag"
+end

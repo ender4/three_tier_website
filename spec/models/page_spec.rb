@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Page do
   
   before(:each) do
-    @attr = { :name => "a page",
+    @attr = { :name => "a Page to test",
               #:image => "public/images/rails.png", 
               :description => "a sample description",
               :title => "a title" }
@@ -33,5 +33,18 @@ describe Page do
   it "should respond to title" do
     page = Page.create!(@attr)
     page.should respond_to(:title)
+  end
+  
+  it "should respond to name_url" do
+    Page.create!(@attr).should respond_to :name_url
+  end
+  
+  it "should reject names that reduce to the same name_url" do
+    Page.create!(@attr)
+    n = @attr[:name]
+    names = [n.capitalize, n.split(" ").join, n.upcase, n.downcase, "#{n}$"]
+    names.each do |name|
+      Page.new(@attr.merge(:name => name)).should_not be_valid 
+    end
   end
 end

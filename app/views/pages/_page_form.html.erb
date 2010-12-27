@@ -1,0 +1,65 @@
+<table>
+  <tr>
+    <td class="main">
+      <%= form_for @page, :remote => true do |f| %>
+        <%= render 'shared/error_messages', :object => f.object %>
+        <div class="field">
+          <%= f.label :name %><br />
+          <%= f.text_field :name %>
+        </div>
+        <div class="field">
+          <%= f.label :title %><br />
+          <%= f.text_field :title %>
+        </div>
+        <div class="field">
+          <%= f.label :description %><br />
+          <%= f.text_area :description %>
+        </div>
+        <div class="actions">
+          <%= f.submit @submit %>
+        </div>
+      <% end %>
+    </td>
+    <td class="sidebar round">
+      <h3>Preview</h3>
+      <div class="preview_load">
+        Navigation link:
+        <div class="preview field link round"></div>
+
+        Url:
+        <div class="preview field url round"></div>
+
+        Title:
+        <div class="preview field title round"></div>
+
+        Description:
+        <div class="preview field description round"></div>
+      </div>
+    </td>
+  </tr>
+</table>
+<script type='text/javascript'>
+$(document).ready(function () {
+  function send_ajax_preview_page_request() {
+    $.ajax({
+      url: '/pages/preview',
+      data: {
+        name:  $("#page_name").val(),
+        title:  $("#page_title").val(),
+        description:  $("#page_description").val()
+      }
+    });
+  }
+  send_ajax_preview_page_request();
+  $("#page_name").change(send_ajax_preview_page_request);
+  $("#page_name").keyup(send_ajax_preview_page_request);
+  $("#page_title").change(send_ajax_preview_page_request);
+  $("#page_title").keyup(send_ajax_preview_page_request);
+  $("#page_description").change(send_ajax_preview_page_request);
+  $("#page_description").keyup(send_ajax_preview_page_request);
+  /*<%= raw(jquery_change_keyup_for("send_ajax_preview_page_request",
+      :a => "#page_name",
+      :b => "#page_title",
+      :c => "#page_description")) %>*/
+});
+</script>

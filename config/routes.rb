@@ -1,5 +1,8 @@
 ThreeTierWebsite::Application.routes.draw do
   
+  match 'pages/preview', :to => 'pages#preview'
+  match '/photos/:photo_name', :to => 'photos#show', :as => :show_photo
+  match '/tags/:tag_name', :to => 'tags#show', :as => :show_tag
   resources :pages #do
     #resources :categories do
     #  resources :items
@@ -8,11 +11,11 @@ ThreeTierWebsite::Application.routes.draw do
   resources :users, :only => [:show]
   resources :sessions, :only => [:new, :create, :destroy]
   resources :photos#, :only => [:show, :index]
+  resources :tags
   
   #match "/users/:id" => "users#show", :as => :show_user
   match '/signin', :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
-  match '/photos/:photo_name', :to => 'photos#show', :as => :show_photo
   match "/:page_name" => "pages#show", :as => :show_page
   match "/:page_name/:category_name" => "pages#show", :as => :show_category
   match "/:page_name/:category_name/:item_name" => "pages#show",
@@ -20,6 +23,13 @@ ThreeTierWebsite::Application.routes.draw do
   
   root :to => "pages#show", :page_id => 1
   
+  # get "tags/show"
+  # get "tags/index"
+  # get "tags/new"
+  # get "tags/create"
+  # get "tags/edit"
+  # get "tags/update"
+  # get "tags/delete"
   # get "photos/new"
   # get "photos/edit"
   # get "photos/create"

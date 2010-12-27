@@ -13,6 +13,7 @@ class PagesController < ApplicationController
   def new
     @page = Page.new
     @title = "New page"
+    @submit = "Create"
   end
 
   def create
@@ -29,6 +30,7 @@ class PagesController < ApplicationController
   def edit
     @page = Page.find(params[:id])
     @title = "Edit page"
+    @submit = "Update"
   end
 
   def update
@@ -52,6 +54,19 @@ class PagesController < ApplicationController
       flash[:success] = "Page destroyed."
     end
     redirect_to root_path
+  end
+  
+  def preview
+    @page = Page.new(params)
+    respond_to do |format|
+      format.js
+    end
+    # respond_to do |format|
+      # format.js do
+        # @page = Page.new(params)
+        # render 'preview', :layout => false
+      # end
+    # end
   end
     
 end

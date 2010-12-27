@@ -6,29 +6,72 @@
         <nav class="round">
           <ul>
             <% Page.all(:order => "page_order").each do |page| %>
-              <%= raw page_link_li(page) %>
+              <%= page_link_li page %>
             <% end %>
-            <li><%= link_to "Photo gallery", photos_path %></li>
+            <%= photo_gallery_link_li %>
+            <%= tag_index_link_li %>
           </ul>
         </nav>
-        <% if signed_in? and not new_page? %>
+        <% if signed_in? and current_user.may_change_content? %>
           <br />
           <nav class="round">
-            <ul>
-              <li>Page: </li>
-              <% if current_user.may_post? %>
-                <li><%= link_to "new", new_page_path %></li>
-              <% end %>
-              <% if current_user.may_put? %>
-                <li><%= link_to "edit", edit_page_path(@page) %></li>
-              <% end %>
-              <% if current_user.may_delete? and not protected_page?(@page) %>
-                <li><%= link_to "delete", @page,
-                      :method => "delete",
-                      :confirm => "Are you sure?",
-                      :title => "Delete #{@page.name}" %></li>
-              <% end %>
-            </ul>
+            <% if not new_page? %>
+              <span>Page:</span>
+              <ul>
+                <% if current_user.may_post? %>
+                  <li><%= link_to "new", new_page_path %></li>
+                <% end %>
+                <% if viewing_page? %>
+                  <% if current_user.may_put? %>
+                    <li><%= link_to "edit", edit_page_path(@page) %></li>
+                  <% end %>
+                  <% if current_user.may_delete? and not protected_page?(@page) %>
+                    <li><%= link_to "delete", @page,
+                          :method => "delete",
+                          :confirm => "Are you sure?",
+                          :title => "Delete #{@page.name}" %></li>
+                  <% end %>
+                <% end %>
+              </ul>
+            <% end %>
+            <% if not new_tag? %>
+              <span>Tag:</span>
+              <ul>
+                <% if current_user.may_post? %>
+                  <li><%= link_to "new", new_tag_path %></li>
+                <% end %>
+                <% if viewing_tag? %>
+                  <% if current_user.may_put? %>
+                    <li><%= link_to "edit", edit_tag_path(@tag) %></li>
+                  <% end %>
+                  <% if current_user.may_delete? %>
+                    <li><%= link_to "delete", @tag,
+                          :method => "delete",
+                          :confirm => "Are you sure?",
+                          :title => "Delete #{@tag.name}" %></li>
+                  <% end %>
+                <% end %>
+              </ul>
+            <% end %>
+            <% if not new_photo? %>
+              <span>Photo:</span>
+              <ul>
+                <% if current_user.may_post? %>
+                  <li><%= link_to "new", new_photo_path %></li>
+                <% end %>
+                <% if viewing_photo? %>
+                  <% if current_user.may_put? %>
+                    <li><%= link_to "edit", edit_photo_path(@photo) %></li>
+                  <% end %>
+                  <% if current_user.may_delete? %>
+                    <li><%= link_to "delete", @photo,
+                          :method => "delete",
+                          :confirm => "Are you sure?",
+                          :title => "Delete #{@photo.name}" %></li>
+                  <% end %>
+                <% end %>
+              </ul>
+            <% end %>
           </nav>
         <% end %>
       </td>

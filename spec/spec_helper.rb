@@ -33,6 +33,29 @@ RSpec.configure do |config|
     controller.signin(user)
   end
   
+  def pretty_content(string)
+    string.split(" ").each do |str|
+      str.capitalize!
+    end.join
+  end
+  
+  def create_photo!(attr)
+    photo = Photo.new(attr)
+    photo.image = attr[:image]
+    photo.save!
+    photo
+  end
+  
+  def new_photo(attr)
+    photo = Photo.new(attr)
+    photo.image = attr[:image]
+    photo
+  end
+  
+  # def strip_string(name)
+    # (Module::ApplicationHelper).strip_string(name)
+  # end
+  
   config.include Paperclip::Shoulda::Matchers
 end
 #=end

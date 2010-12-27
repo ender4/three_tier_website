@@ -9,6 +9,7 @@ gem 'will_paginate', '3.0.pre2'
 gem 'jquery-rails'
 gem 'paperclip'
 gem 'aws-s3'
+gem 'sanitize'
 
 group :development do
   gem 'rspec-rails', '2.1.0'

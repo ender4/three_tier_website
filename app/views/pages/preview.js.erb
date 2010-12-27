@@ -1,0 +1,6 @@
+$(document).ready(function() {
+  $("div.preview.field.link").html("<%= pretty_text(@page.name) %>");
+  $("div.preview.field.url").html("<%= show_page_path(@page.preview_name_url) %>");
+  $("div.preview.field.title").html("<%= title %>");
+  $("div.preview.field.description").html("<%= raw(clean_description(@page.description)) %>");
+});

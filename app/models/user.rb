@@ -52,6 +52,10 @@ class User < ActiveRecord::Base
     permissions =~ /delete/i
   end
   
+  def may_change_content?
+    may_put? or may_post? or may_delete?
+  end
+  
   def self.authenticate(name, submitted_password)
     user = find_by_name(name)
     if user.nil? or not(user.has_password?(submitted_password))

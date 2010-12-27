@@ -1,4 +1,4 @@
 <li>
   <%= image_tag photo.image.url(:thumb) %>
-  <%= link_to photo.name, photo %>
+  <%= link_to photo.name, show_photo_path(photo.name_url) %>
 </li>

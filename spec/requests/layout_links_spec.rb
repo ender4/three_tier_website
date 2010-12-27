@@ -18,7 +18,13 @@ describe "LayoutLinks" do
   it "should have a link to the photo gallery" do
     get '/'
     response.should have_selector("a", :href => photos_path,
-                                       :content => "Photo gallery")
+                                       :content => "PhotoGallery")
+  end
+  
+  it "should have a link to the tag index" do
+    get '/'
+    response.should have_selector("a", :href => tags_path,
+                                       :content => "TagIndex")
   end
   
   describe "title" do

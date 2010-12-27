@@ -29,7 +29,7 @@ describe PagesController do
     it "should have a link to the home page" do
       get :show, :id => @page.id
       response.should have_selector("a", :href => root_path,
-                                         :content => @home.name)
+                                         :content => pretty_content(@home.name))
     end
     
     it "should have a link for every page" do

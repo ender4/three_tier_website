@@ -18,15 +18,8 @@ class Page < ActiveRecord::Base
   include ClassMethodsHelper
 
   class NameValidator < ActiveModel::EachValidator
-    def validate_each( record, attribute, value )
-      record.errors[ attribute ] << ( options[ :message ] ||
-          "must contain at least 1 letter, digit, underscore or dash" ) if
-          Page.strip_string(value).empty?
-      in_use = Page.name_in_use?(value)
-      record.errors[ attribute ] << ( options[ :message ] ||
-          "in use" ) if in_use and in_use != record
-      record.errors[ attribute ] << ( options[ :message ] ||
-          "reserved keyword" ) if value =~ Page.keyword_regexp
+    def validate_each(record, attribute, value)
+      Page.validate_name(record, attribute, value, options)
     end
   end
 
@@ -37,7 +30,8 @@ class Page < ActiveRecord::Base
   validates :description, :presence => true
   
   before_save :generate_name_url
-  before_save :trim_title
+  before_save :sanitize_title
+  before_save :sanitize_description
   before_create :generate_page_order
   
   def swap_order!(other)
@@ -48,11 +42,14 @@ class Page < ActiveRecord::Base
     self.save
   end
     
-  def self.name_in_use?(name)
-    find_by_name_url(self.strip_string(name))
+  # def self.name_in_use?(name)
+    # find_by_name_url(self.strip_string(name))
+  # end
+  
+  def preview_name_url
+    Page.strip_string(name)
   end
-  
-  
+   
   private
   
     def generate_name_url
@@ -65,7 +62,11 @@ class Page < ActiveRecord::Base
       self.page_order = order + 1
     end
     
-    def trim_title
-      title = nil if title.blank?
+    def sanitize_title
+      self.title = Page.clean_title(title)
+    end
+    
+    def sanitize_description
+      self.description = Page.clean_description(description)
     end
 end

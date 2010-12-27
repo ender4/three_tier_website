@@ -1,7 +1,8 @@
 class PhotosController < ApplicationController
-
+  include ApplicationHelper
+  
   def show
-    @photo = Photo.find(params[:id])
+    @photo = get_photo
   end
   
   def index
@@ -12,6 +13,7 @@ class PhotosController < ApplicationController
   end
 
   def edit
+    @photo = get_photo
   end
 
   def create
