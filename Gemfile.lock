@@ -110,6 +110,7 @@ DEPENDENCIES
   factory_girl_rails (= 1.0)
   faker (= 0.3.1)
   jquery-rails
+  nokogiri (= 1.4.4.1)
   paperclip
   rails (= 3.0.3)
   rspec (= 2.1.0)

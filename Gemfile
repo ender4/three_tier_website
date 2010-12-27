@@ -24,7 +24,7 @@ group :test do
 end
 
 group :production do
-  gem 'nokogiri', '1.4.4'
+  gem 'nokogiri', '1.4.4.1'
 end
 
 # Use unicorn as the web server
