@@ -23,6 +23,10 @@ group :test do
   gem 'factory_girl_rails', '1.0'
 end
 
+group :production do
+  gem 'nokogiri', '1.4.4'
+end
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
